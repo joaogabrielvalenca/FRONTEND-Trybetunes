@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../Components/MusicCard';
 import Header from './Header';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   state = {
@@ -12,11 +13,25 @@ class Album extends React.Component {
     albumName: '',
     apiData: [],
     isLoading: true,
+    favoriteSongs: [],
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.fetchMusicsFromAlbum();
+    const favorites = await getFavoriteSongs();
+    this.setState({ favoriteSongs: favorites });
   }
+
+  componentDidUpdate() {
+    console.log(this.state.favoriteSongs);
+  }
+
+  checkFavorite = (id) => {
+    const { favoriteSongs } = this.state;
+    const findId = favoriteSongs.find((song) => song.trackId === id);
+    if (findId) return true;
+    if (!findId) return false;
+  };
 
   fetchMusicsFromAlbum = async () => {
     const { match } = this.props;
@@ -55,8 +70,9 @@ class Album extends React.Component {
               previewURL={ song.previewURL }
               artistName={ artistName }
               albumName={ albumName }
-              trackId={ song.id }
+              trackId={ song.trackId }
               data={ apiData[index] }
+              isFavorite={ this.checkFavorite(song.trackId) }
             />
           ))}
         </div>
