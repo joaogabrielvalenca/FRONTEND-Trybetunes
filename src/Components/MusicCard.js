@@ -2,29 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { addSong } from '../services/favoriteSongsAPI';
 
-// {
-//   artistId: 12,
-//   artistName: "Artist Name",
-//   collectionId: 123,
-//   collectionName: "Collection Name",
-//   collectionPrice: 12.25,
-//   artworkUrl100: "https://url-to-image",
-//   releaseDate: "2012-03-02T08:00:00Z",
-//   trackCount: 8,
-// }
-
 class MusicCard extends React.Component {
   state = {
     favorites: [],
     isLoading: false,
+    isFavoriteSong: false,
   };
-
-  // componentDidUpdate() {
-  //   const { favorites } = this.state;
-  //   const { data } = this.props;
-  //   // console.log(data);
-  //   console.log(favorites);
-  // }
 
   handleFavorite = async (event) => {
     const { favorites } = this.state;
@@ -38,6 +21,7 @@ class MusicCard extends React.Component {
     }
     this.setState({
       favorites: list,
+      isFavoriteSong: true,
     });
   };
 
@@ -48,9 +32,9 @@ class MusicCard extends React.Component {
       albumName,
       previewURL,
       trackId,
-      isFavorite } = this.props;
-    console.log(isFavorite);
-    const { isLoading } = this.state;
+      isFavorite,
+    } = this.props;
+    const { isLoading, isFavoriteSong } = this.state;
     return (
       <div style={ { border: '1px solid red' } }>
         <h2>{ trackName }</h2>
@@ -72,7 +56,7 @@ class MusicCard extends React.Component {
           <input
             type="checkbox"
             onClick={ this.handleFavorite }
-            checked={ isFavorite }
+            checked={ isFavoriteSong || isFavorite }
             data-testid={ `checkbox-music-${trackId}` }
           />
         </label>
