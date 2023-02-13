@@ -22,10 +22,6 @@ class Album extends React.Component {
     this.setState({ favoriteSongs: favorites });
   }
 
-  componentDidUpdate() {
-    console.log(this.state.favoriteSongs);
-  }
-
   checkFavorite = (id) => {
     const { favoriteSongs } = this.state;
     const findId = favoriteSongs.find((song) => song.trackId === id);

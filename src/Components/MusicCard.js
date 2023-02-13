@@ -42,7 +42,13 @@ class MusicCard extends React.Component {
   };
 
   render() {
-    const { trackName, artistName, albumName, previewURL, trackId, isFavorite } = this.props;
+    const {
+      trackName,
+      artistName,
+      albumName,
+      previewURL,
+      trackId,
+      isFavorite } = this.props;
     console.log(isFavorite);
     const { isLoading } = this.state;
     return (
@@ -82,7 +88,8 @@ MusicCard.propTypes = {
   albumName: PropTypes.string.isRequired,
   previewURL: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
-  // data: PropTypes.object.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf.isRequired,
 };
 
 export default MusicCard;
