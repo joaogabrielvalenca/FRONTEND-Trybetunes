@@ -1,9 +1,14 @@
 import React from 'react';
+import Header from './Pages/Header';
+import Routes from './Routes';
 
-class App extends React.Component {
-  render() {
-    return (<p>Olá, TrybeTunes</p>);
-  }
+function App() {
+  return (
+    <main>
+      <Header />
+      <Routes />
+    </main>
+  );
 }
 
 export default App;
