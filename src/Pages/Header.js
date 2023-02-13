@@ -26,14 +26,14 @@ class Header extends React.Component {
         { isLoading ? <p>Carregando...</p> : (
           <>
             <h2>header</h2>
-            <div data-testid="link-to-search">
-              <Link to="/search">Busca</Link>
+            <div>
+              <Link data-testid="link-to-search" to="/search">Busca</Link>
             </div>
-            <div data-testid="link-to-favorites">
-              <Link to="/favorites">Favoritas</Link>
+            <div>
+              <Link data-testid="link-to-favorites" to="/favorites">Favoritas</Link>
             </div>
-            <div data-testid="link-to-profile">
-              <Link to="/profile">Perfil</Link>
+            <div>
+              <Link data-testid="link-to-profile" to="/profile">Perfil</Link>
             </div>
             <div data-testid="header-user-name">
               <p>{ userName }</p>

@@ -35,7 +35,6 @@ class Login extends React.Component {
     await createUser({ name: login });
     this.setState({ isLoading: false });
     this.onRouteChange();
-    // <Redirect to="/search" />;
   };
 
   render() {

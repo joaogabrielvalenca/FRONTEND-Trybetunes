@@ -16,17 +16,23 @@ import { addSong } from '../services/favoriteSongsAPI';
 class MusicCard extends React.Component {
   state = {
     favorites: [],
+    // isLoading: false.
   };
 
   // componentDidUpdate() {
-  //   console.log(this.state.favorites);
+  //   const { favorites } = this.state;
+  //   const { data } = this.props;
+  //   // console.log(data);
+  //   console.log(favorites);
   // }
 
   handleFavorite = async (event) => {
     const { favorites } = this.state;
     const { data } = this.props;
     let list = [...favorites];
+    // this.setState({ isLoading: true})
     await addSong(data);
+    // this.setState({ isLoading: false})
     if (event.target.checked) {
       list = [...favorites, data];
     }
@@ -37,6 +43,7 @@ class MusicCard extends React.Component {
 
   render() {
     const { trackName, artistName, albumName, previewURL, trackId } = this.props;
+    // if (isLoading) return <h1>Carregando...</h1>;
     return (
       <div style={ { border: '1px solid red' } }>
         <h2>{ trackName }</h2>
